@@ -13,16 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/closest"
-        android:textSize="20sp" />
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/matte" />
 
     <ImageButton
-        android:id="@+id/cinemaButton"
+        android:id="@+id/theaterButton"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@null"
         android:scaleType="fitCenter"
         android:padding="20dp"
-        app:srcCompat="@mipmap/ic_theater_round" />
+        app:srcCompat="@mipmap/ic_theater_round"
+        android:onClick="onClickTheaterButton"/>
 
     <TextView
         android:id="@+id/cinema"
@@ -30,7 +33,9 @@
         android:layout_height="wrap_content"
         android:text="@string/cinema"
         android:textAlignment="center"
-        android:textSize="15sp" />
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="@color/matte" />
 
     <ImageButton
         android:id="@+id/movieButton"
@@ -39,7 +44,8 @@
         android:background="@null"
         android:scaleType="fitCenter"
         android:padding="20dp"
-        app:srcCompat="@mipmap/ic_movies_round" />
+        app:srcCompat="@mipmap/ic_movies_round"
+        android:onClick="onClickMovieButton"/>
 
     <TextView
         android:id="@+id/movie"
@@ -47,6 +53,8 @@
         android:layout_height="wrap_content"
         android:text="@string/movie"
         android:textAlignment="center"
-        android:textSize="15sp" />
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="@color/matte"/>
 
 </LinearLayout>
