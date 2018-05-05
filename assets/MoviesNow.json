@@ -1,5 +1,5 @@
 [
-	  {
+	{
 	  "movieTheatreName": "Major Cineplex Ratchayothin",
 	  "movies": [
 	    {
@@ -33,7 +33,7 @@
 	      "image": "https://ia.media-imdb.com/images/M/MV5BODAyZjhkYjQtMDY3Yi00OWVhLTg3NGMtOGU0ZmFjZTU1ZWI1XkEyXkFqcGdeQXVyNjc3MjQzNTI@._V1_UY268_CR4,0,182,268_AL_.jpg"
 	    }
 	  ]
-	}, 
+	},
 	{
 	  "movieTheatreName": "Esplanade Cineplex Ngamwongwa-Kaerai",
 	  "movies": [
