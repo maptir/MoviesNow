@@ -3,70 +3,70 @@
         "movieTitle": "Avengers: Infinity War",
         "movieDescription": "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.",
         "cinema": "Major Cineplex Ratchayothin",
-	"times": "6:30 10:00 13:30 17:00 20:30 00:00 03:30",
+	"times": ["6:30", "10:00", "13:30", "17:00", "20:30", "00:00", "03:30"],
         "image": "https://ia.media-imdb.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_UX182_CR0,0,182,268_AL_.jpg"
       },
       {
         "movieTitle": "A Quiet Place",
         "movieDescription": "A family is forced to live in silence while hiding from creatures that hunt by sound.",
         "cinema": "Major Cineplex Ratchayothin",        
-	"times": "17:50 22:10",
+	"times": ["17:50", "22:10"],
         "image": "https://ia.media-imdb.com/images/M/MV5BMjI0MDMzNTQ0M15BMl5BanBnXkFtZTgwMTM5NzM3NDM@._V1_UX182_CR0,0,182,268_AL_.jpg"
       },
       {
         "movieTitle": "Truth or Dare",
         "movieDescription": "A harmless game of Truth or Dare among friends turns deadly when someone -- or something -- begins to punish those who tell a lie or refuse the dare.",
         "cinema": "Major Cineplex Ratchayothin",
-        "times": "13:40 18:20 20:40 23:10",
+        "times": ["13:40", "18:20", "20:40", "23:10"],
         "image": "https://ia.media-imdb.com/images/M/MV5BOGU2YTZmMjYtZDUwYi00NTc1LTlkMjAtM2ViZDkzOTlhNGNhXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg"
       },
       {
         "movieTitle": "I Kill Giants",
         "movieDescription": "Barbara Thorson struggles through life by escaping into a fantasy life of magic and monsters.",
         "cinema": "Major Cineplex Ratchayothin",
-        "times": "12:00 14:30 19:30 22:00",
+        "times": ["12:00", "14:30", "19:30", "22:00"],
         "image": "https://ia.media-imdb.com/images/M/MV5BMjM1MTc3ODcwMV5BMl5BanBnXkFtZTgwNTU2MjA4NDM@._V1_UX182_CR0,0,182,268_AL_.jpg"
       },
       {
         "movieTitle": "Tonight At Romance Theater",
         "movieDescription": "An old man being treated in a hospital is always clinging to what appears to be a screenplay for a film.",
         "cinema": "Major Cineplex Ratchayothin",
-        "times": "15:10 20:20",
+        "times": ["15:10", "20:20"],
         "image": "https://ia.media-imdb.com/images/M/MV5BODAyZjhkYjQtMDY3Yi00OWVhLTg3NGMtOGU0ZmFjZTU1ZWI1XkEyXkFqcGdeQXVyNjc3MjQzNTI@._V1_UY268_CR4,0,182,268_AL_.jpg"
       },
       {
         "movieTitle": "Avengers: Infinity War",
         "movieDescription": "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.",
     	"cinema": "Esplanade Cineplex Ngamwongwa-Kaerai",
-	"times": "12:20 15:40 19:00 22:20",
+	"times": ["12:20", "15:40", "19:00", "22:20"],
         "image": "https://ia.media-imdb.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_UX182_CR0,0,182,268_AL_.jpg"
       },
       {
         "movieTitle": "A Quiet Place",
         "movieDescription": "A family is forced to live in silence while hiding from creatures that hunt by sound.",
     	"cinema": "Esplanade Cineplex Ngamwongwa-Kaerai",        
-	"times": "17:50 22:10",
+	"times": ["17:50", "22:10"],
         "image": "https://ia.media-imdb.com/images/M/MV5BMjI0MDMzNTQ0M15BMl5BanBnXkFtZTgwMTM5NzM3NDM@._V1_UX182_CR0,0,182,268_AL_.jpg"
       },
       {
         "movieTitle": "Truth or Dare",
         "movieDescription": "A harmless game of Truth or Dare among friends turns deadly when someone -- or something -- begins to punish those who tell a lie or refuse the dare.",
     	"cinema": "Esplanade Cineplex Ngamwongwa-Kaerai",
-        "times": "18:40",
+        "times": ["18:40"],
         "image": "https://ia.media-imdb.com/images/M/MV5BOGU2YTZmMjYtZDUwYi00NTc1LTlkMjAtM2ViZDkzOTlhNGNhXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg"
       },
       {
         "movieTitle": "I Kill Giants",
         "movieDescription": "Barbara Thorson struggles through life by escaping into a fantasy life of magic and monsters.",
     	"cinema": "Esplanade Cineplex Ngamwongwa-Kaerai",
-        "times": "11:40 14:20 17:00 19:40 22:20",
+        "times": ["11:40", "14:20", "17:00", "19:40", "22:20"],
         "image": "https://ia.media-imdb.com/images/M/MV5BMjM1MTc3ODcwMV5BMl5BanBnXkFtZTgwNTU2MjA4NDM@._V1_UX182_CR0,0,182,268_AL_.jpg"
       },
       {
         "movieTitle": "Tonight At Romance Theater",
         "movieDescription": "An old man being treated in a hospital is always clinging to what appears to be a screenplay for a film.",
     	"cinema": "Esplanade Cineplex Ngamwongwa-Kaerai",
-        "times": "22:50",
+        "times": ["22:50"],
         "image": "https://ia.media-imdb.com/images/M/MV5BODAyZjhkYjQtMDY3Yi00OWVhLTg3NGMtOGU0ZmFjZTU1ZWI1XkEyXkFqcGdeQXVyNjc3MjQzNTI@._V1_UY268_CR4,0,182,268_AL_.jpg"
       }
 ]

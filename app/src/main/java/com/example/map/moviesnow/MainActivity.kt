@@ -42,5 +42,6 @@ class MainActivity : AppCompatActivity() {
     fun onClickMovieButton(view: View) {
         val intent = Intent(this, MovieActivity::class.java)
         startActivityForResult(intent, INPUT_MOVIE_REQUEST)
+        println("FUCKING MOVIE CLICK ---------------------------------------")
     }
 }

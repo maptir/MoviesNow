@@ -16,8 +16,8 @@ class MovieActivity: AppCompatActivity(), MovieView {
     private lateinit var presenter: MoviePresenter
     private lateinit var adapter: ArrayAdapter<Movie>
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
         repository = MockMovieRepository()
         presenter = MoviePresenter(this, repository)

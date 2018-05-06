@@ -16,11 +16,11 @@ class MockMovieRepository: MovieRepository() {
 
     override fun loadAllMovie() {
         movieList.clear()
-        val task = BookLoaderTask()
+        val task = MovieLoaderTask()
         task.execute()
     }
 
-    inner class BookLoaderTask: AsyncTask<String, Unit, String>() {
+    inner class MovieLoaderTask: AsyncTask<String, Unit, String>() {
 
         override fun doInBackground(vararg params: String?): String {
             return URL("https://raw.githubusercontent.com/zepalz/MoviesNow/master/assets/MoviesNow.json").readText()
@@ -33,6 +33,7 @@ class MockMovieRepository: MovieRepository() {
                 JsonReader(StringReader(result)).use { reader ->
                     reader.beginArray {
                         while (reader.hasNext()) {
+                            println(reader)
                             klaxon.parse<Movie>(reader)?.let { movieList.add(it) }
                         }
                     }
