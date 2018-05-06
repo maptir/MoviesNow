@@ -6,7 +6,7 @@ import java.util.*
 class MoviePresenter(val view:MovieView, val repository: MovieRepository): Observer {
     fun start() {
         repository.addObserver(this)
-        repository.loadAllMovie()
+        repository.loadAllTheater()
     }
 
     override fun update(o: Observable?, arg: Any?) {

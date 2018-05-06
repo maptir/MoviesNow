@@ -8,19 +8,19 @@ import java.net.URL
 
 class MockMovieRepository: MovieRepository() {
 
+    private val theaterList = ArrayList<Theater>()
     private val movieList = ArrayList<Movie>()
 
     override fun getMovieList(): ArrayList<Movie> {
         return movieList
     }
 
-    override fun loadAllMovie() {
-        movieList.clear()
-        val task = MovieLoaderTask()
-        task.execute()
+    override fun loadAllTheater() {
+        theaterList.clear()
+        TheaterLoaderTask().execute()
     }
 
-    inner class MovieLoaderTask: AsyncTask<String, Unit, String>() {
+    inner class TheaterLoaderTask: AsyncTask<String, Unit, String>() {
 
         override fun doInBackground(vararg params: String?): String {
             return URL("https://raw.githubusercontent.com/zepalz/MoviesNow/master/assets/MoviesNow.json").readText()
@@ -34,9 +34,14 @@ class MockMovieRepository: MovieRepository() {
                     reader.beginArray {
                         while (reader.hasNext()) {
                             println(reader)
-                            klaxon.parse<Movie>(reader)?.let { movieList.add(it) }
+                            klaxon.parse<Theater>(reader)?.let { theaterList.add(it) }
                         }
                     }
+                }
+            }
+            for(theater in theaterList) {
+                for(time in theater.times) {
+                    movieList.add(Movie(theater.movieTitle, theater.movieDescription, theater.cinema, time, theater.image))
                 }
             }
             setChanged()
