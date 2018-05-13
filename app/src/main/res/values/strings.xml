@@ -1,6 +1,8 @@
 <resources>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAHAUOaPO8meBYQXtVJ9IJdH0piUPv8zEY</string>
     <string name="app_name">MoviesNow</string>
     <string name="closest">Find Closest</string>
     <string name="cinema">CINEMAS</string>
     <string name="movie">MOVIES</string>
+    <string name="available">Available Movies:</string>
 </resources>

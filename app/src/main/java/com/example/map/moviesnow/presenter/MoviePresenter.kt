@@ -6,12 +6,16 @@ import java.util.*
 class MoviePresenter(val view:MovieView, val repository: MovieRepository): Observer {
     fun start() {
         repository.addObserver(this)
-        repository.loadAllTheater()
+        repository.loadAllMovie()
+    }
+
+    fun searchTheater(theater: String) {
+        view.setMovieList(repository.filterMovieListByTheater(theater))
     }
 
     override fun update(o: Observable?, arg: Any?) {
         if(o == repository)
-            view.setMovieList(repository.getMovieList())
+            view.setMovieList(repository.filterMovieListByTheater("Major Cineplex Ratchayothin"))
     }
 
 }

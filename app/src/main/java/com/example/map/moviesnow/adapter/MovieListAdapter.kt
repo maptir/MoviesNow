@@ -1,6 +1,7 @@
 package com.example.map.moviesnow.adapter
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
@@ -33,14 +34,15 @@ class MovieListAdapter(val context: Context, val movieList: ArrayList<Movie>): B
         val movieShowTime = view.findViewById(R.id.movie_showtime) as TextView
 
         movieTitle.text = movie.movieTitle
-        movieDes.text = movie.movieDescription
+        movieDes.text = movie.cinema
         movieShowTime.text = movie.time
         var input: InputStream? = null
         try {
             val url = URL(movie.image)
-            println(movie.image)
             input = BufferedInputStream(url.openStream())
-            movieImage.setImageBitmap(BitmapFactory.decodeStream(input))
+            val bitmap = BitmapFactory.decodeStream(input)
+            val resized = Bitmap.createScaledBitmap(bitmap, (bitmap.width*0.39).toInt() , (bitmap.height*0.39).toInt(), true);
+            movieImage.setImageBitmap(resized)
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
