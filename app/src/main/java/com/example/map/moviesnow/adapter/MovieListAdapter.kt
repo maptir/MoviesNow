@@ -34,8 +34,8 @@ class MovieListAdapter(val context: Context, val movieList: ArrayList<Movie>): B
         val movieShowTime = view.findViewById(R.id.movie_showtime) as TextView
 
         movieTitle.text = movie.movieTitle
-        movieDes.text = movie.cinema
-        movieShowTime.text = movie.time
+        movieDes.text = movie.movieDescription
+        movieShowTime.text = (" " + movie.time + " ")
         var input: InputStream? = null
         try {
             val url = URL(movie.image)
