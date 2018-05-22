@@ -13,19 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/closest"
+        android:textColor="@color/matte"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="@color/matte" />
+        android:textStyle="bold" />
 
     <ImageButton
         android:id="@+id/theaterButton"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@null"
-        android:scaleType="fitCenter"
+        android:onClick="onClickTheaterButton"
         android:padding="20dp"
-        app:srcCompat="@mipmap/ic_theater_round"
-        android:onClick="onClickTheaterButton"/>
+        android:scaleType="fitCenter"
+        app:srcCompat="@mipmap/ic_theater_round" />
 
     <TextView
         android:id="@+id/cinema"
@@ -33,19 +33,19 @@
         android:layout_height="wrap_content"
         android:text="@string/cinema"
         android:textAlignment="center"
-        android:textStyle="bold"
+        android:textColor="@color/matte"
         android:textSize="15sp"
-        android:textColor="@color/matte" />
+        android:textStyle="bold" />
 
     <ImageButton
         android:id="@+id/movieButton"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@null"
-        android:scaleType="fitCenter"
+        android:onClick="onClickMovieButton"
         android:padding="20dp"
-        app:srcCompat="@mipmap/ic_movies_round"
-        android:onClick="onClickMovieButton"/>
+        android:scaleType="fitCenter"
+        app:srcCompat="@mipmap/ic_movies_round" />
 
     <TextView
         android:id="@+id/movie"
@@ -53,8 +53,8 @@
         android:layout_height="wrap_content"
         android:text="@string/movie"
         android:textAlignment="center"
-        android:textStyle="bold"
+        android:textColor="@color/matte"
         android:textSize="15sp"
-        android:textColor="@color/matte"/>
+        android:textStyle="bold" />
 
 </LinearLayout>

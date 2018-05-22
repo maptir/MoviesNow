@@ -13,7 +13,7 @@ import com.example.map.moviesnow.presenter.MoviePresenter
 import com.example.map.moviesnow.presenter.MovieView
 import kotlinx.android.synthetic.main.activity_movie.*
 
-class MovieActivity: AppCompatActivity(), MovieView {
+class MovieActivity : AppCompatActivity(), MovieView {
     private lateinit var repository: MovieRepository
     private lateinit var presenter: MoviePresenter
     private lateinit var adapter: MovieListAdapter
@@ -35,7 +35,7 @@ class MovieActivity: AppCompatActivity(), MovieView {
     }
 
     override fun toggleLoading() {
-        loadingPanel.visibility = if(loadingPanel.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+        loadingPanel.visibility = if (loadingPanel.visibility == View.VISIBLE) View.GONE else View.VISIBLE
     }
 
     private fun setSpinner() {

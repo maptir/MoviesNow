@@ -1,5 +1,6 @@
 package com.example.map.moviesnow.models
 
+import android.os.Parcelable
 import java.util.Observable
 
 abstract class MovieRepository: Observable() {
