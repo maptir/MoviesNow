@@ -7,6 +7,7 @@ class MoviePresenter(val view:MovieView, val repository: MovieRepository): Obser
     fun start() {
         repository.addObserver(this)
         repository.loadAllMovie()
+        view.toggleLoading()
     }
 
     fun searchTheater(theater: String) {
@@ -14,8 +15,10 @@ class MoviePresenter(val view:MovieView, val repository: MovieRepository): Obser
     }
 
     override fun update(o: Observable?, arg: Any?) {
-        if(o == repository)
+        if(o == repository){
             view.setMovieList(repository.filterMovieListByTheater("Major Cineplex Ratchayothin"))
+            view.toggleLoading()
+        }
     }
 
 }

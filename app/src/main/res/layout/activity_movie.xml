@@ -21,6 +21,10 @@
         android:textColor="@color/matte"
         android:layout_margin="10dp" />
 
+    <include
+        android:id="@+id/loadingPanel"
+        layout="@layout/loading"/>
+
     <ListView
         android:id="@+id/movieList"
         android:layout_width="wrap_content"

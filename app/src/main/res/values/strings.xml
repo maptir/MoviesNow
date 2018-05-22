@@ -5,4 +5,5 @@
     <string name="cinema">CINEMAS</string>
     <string name="movie">MOVIES</string>
     <string name="available">Available Movies:</string>
+    <string name="loading">loading...</string>
 </resources>

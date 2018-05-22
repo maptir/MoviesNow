@@ -8,7 +8,7 @@ import java.net.URL
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MockMovieRepository: MovieRepository() {
+class MockMovieRepository : MovieRepository() {
 
     private var movieList = ArrayList<Movie>()
 
@@ -27,33 +27,32 @@ class MockMovieRepository: MovieRepository() {
         } as ArrayList<Movie>
     }
 
-    private inner class TheaterLoaderTask: AsyncTask<String, Unit, String>() {
+    private inner class TheaterLoaderTask : AsyncTask<String, Unit, String>() {
 
         override fun doInBackground(vararg params: String?): String {
-            return URL("https://raw.githubusercontent.com/zepalz/MoviesNow/master/assets/MoviesNow.json").readText()
-        }
-
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            if(result != null) {
-                val klaxon = Klaxon()
-                JsonReader(StringReader(result)).use { reader ->
-                    reader.beginArray {
-                        val calendar = Calendar.getInstance()
-                        val curMin = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE)
-                        while (reader.hasNext()) {
-                            klaxon.parse<Theater>(reader)?.let {
-                                for(time in it.times) {
-                                    val hourMin = time.split(":")
-                                    if(curMin <= (hourMin[0].toInt() * 60 + hourMin[1].toInt()))
-                                        movieList.add(Movie(it.movieTitle, it.movieDescription, it.cinema, time, it.image))
-                                }
+            val result = URL("https://raw.githubusercontent.com/zepalz/MoviesNow/master/assets/MoviesNow.json").readText()
+            val klaxon = Klaxon()
+            JsonReader(StringReader(result)).use { reader ->
+                reader.beginArray {
+                    val calendar = Calendar.getInstance()
+                    val curMin = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE)
+                    while (reader.hasNext()) {
+                        klaxon.parse<Theater>(reader)?.let {
+                            for (time in it.times) {
+                                val hourMin = time.split(":")
+                                if (curMin <= (hourMin[0].toInt() * 60 + hourMin[1].toInt()))
+                                    movieList.add(Movie(it.movieTitle, it.movieDescription, it.cinema, time, it.image))
                             }
                         }
                     }
                 }
             }
-            movieList = ArrayList(movieList.sortedWith(compareBy({it.time})))
+            movieList = ArrayList(movieList.sortedWith(compareBy({ it.time })))
+            return "FINISHED"
+        }
+
+        override fun onPostExecute(result: String?) {
+            super.onPostExecute(result)
             setChanged()
             notifyObservers()
         }
