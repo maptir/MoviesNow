@@ -23,7 +23,8 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="36" />
+                                                <entry key="scalingPercent" value="60" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -34,11 +35,12 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="fdfd96" />
+                                      <entry key="backgroundColor" value="7280ce" />
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="$PROJECT_DIR$/assets/cinema.png" />
-                                      <entry key="foregroundLayerName" value="theater_icon" />
-                                      <entry key="outputName" value="ic_theater" />
+                                      <entry key="foregroundImage" value="$PROJECT_DIR$/assets/video-camera.png" />
+                                      <entry key="foregroundLayerName" value="movies_icon" />
+                                      <entry key="outputName" value="ic_movies" />
+                                      <entry key="previewDensity" value="XXXHIGH" />
                                     </map>
                                   </option>
                                 </PersistentState>

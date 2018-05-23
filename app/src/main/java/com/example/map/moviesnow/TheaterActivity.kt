@@ -2,6 +2,8 @@ package com.example.map.moviesnow
 
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
@@ -19,9 +21,14 @@ import kotlinx.android.synthetic.main.activity_theater.*
 import android.location.LocationManager
 import android.os.AsyncTask
 import android.support.v4.content.ContextCompat
+import android.widget.ImageView
+import android.widget.TextView
 import com.example.map.moviesnow.models.MockMovieRepository
 import com.example.map.moviesnow.models.MovieRepository
 import com.example.map.moviesnow.presenter.TheaterPresenter
+import java.io.BufferedInputStream
+import java.io.InputStream
+import java.net.URL
 
 class TheaterActivity : AppCompatActivity(), OnMapReadyCallback, TheaterView {
 
@@ -94,8 +101,29 @@ class TheaterActivity : AppCompatActivity(), OnMapReadyCallback, TheaterView {
         override fun onPostExecute(result: Movie) {
             super.onPostExecute(result)
             val closest = getLocationFromAddress(result.cinema)
-            mMap.addMarker(MarkerOptions().position(closest).title("Marker in Sydney"))
+            mMap.addMarker(MarkerOptions().position(closest).title(result.cinema))
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(closest, 17f))
+
+            val movieImage = movieInfo.findViewById(R.id.movie_image) as ImageView
+            val movieTitle = movieInfo.findViewById(R.id.movie_title) as TextView
+            val movieDes = movieInfo.findViewById(R.id.movie_des) as TextView
+            val movieShowTime = movieInfo.findViewById(R.id.movie_showtime) as TextView
+
+            movieTitle.text = result.movieTitle
+            movieDes.text = result.movieDescription
+            movieShowTime.text = (" " + result.time + " ")
+            var input: InputStream? = null
+            try {
+                val url = URL(result.image)
+                input = BufferedInputStream(url.openStream())
+                val bitmap = BitmapFactory.decodeStream(input)
+                val resized = Bitmap.createScaledBitmap(bitmap, (bitmap.width * 0.39).toInt(), (bitmap.height * 0.39).toInt(), true);
+                movieImage.setImageBitmap(resized)
+                input.close()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
             toggleLoading()
         }
     }

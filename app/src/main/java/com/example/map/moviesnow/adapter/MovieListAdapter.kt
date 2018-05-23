@@ -17,11 +17,11 @@ import java.io.IOException
 import java.io.InputStream
 import java.net.URL
 
-class MovieListAdapter(val context: Context, val movieList: ArrayList<Movie>): BaseAdapter(), ListAdapter{
+class MovieListAdapter(val context: Context, val movieList: ArrayList<Movie>) : BaseAdapter(), ListAdapter {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var view = convertView
-        if(view == null) {
+        if (view == null) {
             val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             view = inflater.inflate(R.layout.movie_info, null)
         }
@@ -41,18 +41,11 @@ class MovieListAdapter(val context: Context, val movieList: ArrayList<Movie>): B
             val url = URL(movie.image)
             input = BufferedInputStream(url.openStream())
             val bitmap = BitmapFactory.decodeStream(input)
-            val resized = Bitmap.createScaledBitmap(bitmap, (bitmap.width*0.39).toInt() , (bitmap.height*0.39).toInt(), true);
+            val resized = Bitmap.createScaledBitmap(bitmap, (bitmap.width * 0.39).toInt(), (bitmap.height * 0.39).toInt(), true);
             movieImage.setImageBitmap(resized)
+            input.close()
         } catch (e: Exception) {
             e.printStackTrace()
-        } finally {
-            if (input != null) {
-                try {
-                    input.close()
-                } catch (ignored: IOException) {
-                    // Nothing to do
-                }
-            }
         }
 
         return view
