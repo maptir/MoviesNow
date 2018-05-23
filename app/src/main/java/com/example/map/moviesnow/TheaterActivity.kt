@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
@@ -26,6 +27,7 @@ import android.widget.TextView
 import com.example.map.moviesnow.models.MockMovieRepository
 import com.example.map.moviesnow.models.MovieRepository
 import com.example.map.moviesnow.presenter.TheaterPresenter
+import org.w3c.dom.Text
 import java.io.BufferedInputStream
 import java.io.InputStream
 import java.net.URL
@@ -66,23 +68,21 @@ class TheaterActivity : AppCompatActivity(), OnMapReadyCallback, TheaterView {
         loadingPanel.visibility = if (loadingPanel.visibility == View.VISIBLE) View.GONE else View.VISIBLE
     }
 
-    private fun getLocationFromAddress(strAddress: String): LatLng {
-        val location = Geocoder(this).getFromLocationName(strAddress, 5)[0]
-        return LatLng(location.latitude, location.longitude)
+    private fun getLocationFromAddress(strAddress: String): Address {
+        return Geocoder(this).getFromLocationName(strAddress, 5)[0]
     }
 
-    private fun getCurrentLocation(): LatLng? {
+    private fun getCurrentLocation(): Location? {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
             return null
         val lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        val location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-        return LatLng(location.latitude, location.longitude)
+        return lm.getLastKnownLocation(LocationManager.GPS_PROVIDER)
     }
 
-    private inner class FindClosestCinema : AsyncTask<ArrayList<Movie>, Unit, Movie>() {
-        override fun doInBackground(vararg params: ArrayList<Movie>): Movie {
+    private inner class FindClosestCinema : AsyncTask<ArrayList<Movie>, Unit, Movie?>() {
+        override fun doInBackground(vararg params: ArrayList<Movie>): Movie? {
             var closest: Movie = params[0][0]
-            val currentLatLng = getCurrentLocation()!!
+            val currentLatLng = getCurrentLocation() ?: return null
             for (movie in params[0]) {
                 if (movie.cinema != closest.cinema) {
                     val movieLatLng = getLocationFromAddress(movie.cinema)
@@ -98,12 +98,13 @@ class TheaterActivity : AppCompatActivity(), OnMapReadyCallback, TheaterView {
             return closest
         }
 
-        override fun onPostExecute(result: Movie) {
+        override fun onPostExecute(result: Movie?) {
+            if (result == null) {
+                val loadText = loadingPanel.findViewById(R.id.loadText) as TextView
+                loadText.text = "Cannot get your current location. \nTry Open LOCATION on your mobile \n open real GOOGLE MAP \n or going out of building."
+                return
+            }
             super.onPostExecute(result)
-            val closest = getLocationFromAddress(result.cinema)
-            mMap.addMarker(MarkerOptions().position(closest).title(result.cinema))
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(closest, 17f))
-
             val movieImage = movieInfo.findViewById(R.id.movie_image) as ImageView
             val movieTitle = movieInfo.findViewById(R.id.movie_title) as TextView
             val movieDes = movieInfo.findViewById(R.id.movie_des) as TextView
@@ -112,7 +113,7 @@ class TheaterActivity : AppCompatActivity(), OnMapReadyCallback, TheaterView {
             movieTitle.text = result.movieTitle
             movieDes.text = result.movieDescription
             movieShowTime.text = (" " + result.time + " ")
-            var input: InputStream? = null
+            val input: InputStream?
             try {
                 val url = URL(result.image)
                 input = BufferedInputStream(url.openStream())
@@ -124,6 +125,10 @@ class TheaterActivity : AppCompatActivity(), OnMapReadyCallback, TheaterView {
                 e.printStackTrace()
             }
 
+            val closest = getLocationFromAddress(result.cinema)
+            val cLatLng = LatLng(closest.latitude, closest.longitude)
+            mMap.addMarker(MarkerOptions().position(cLatLng).title(result.cinema))
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cLatLng, 17f))
             toggleLoading()
         }
     }

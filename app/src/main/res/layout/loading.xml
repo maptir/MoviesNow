@@ -19,8 +19,10 @@
                 android:indeterminate="true" />
 
             <TextView
+                android:id="@+id/loadText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:text="@string/loading" />
         </LinearLayout>
     </RelativeLayout>
