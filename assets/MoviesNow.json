@@ -24,7 +24,7 @@
         "movieTitle": "I Kill Giants",
         "movieDescription": "Barbara Thorson struggles through life by escaping into a fantasy life of magic and monsters.",
         "cinema": "Major Cineplex Ratchayothin",
-        "times": ["12:00", "14:30", "19:30", "22:00"],
+        "times": ["12:00", "14:30", "19:30", "22:00", "23:59"],
         "image": "https://ia.media-imdb.com/images/M/MV5BMjM1MTc3ODcwMV5BMl5BanBnXkFtZTgwNTU2MjA4NDM@._V1_UX182_CR0,0,182,268_AL_.jpg"
       },
       {
@@ -52,7 +52,7 @@
         "movieTitle": "Truth or Dare",
         "movieDescription": "A harmless game of Truth or Dare among friends turns deadly when someone -- or something -- begins to punish those who tell a lie or refuse the dare.",
     	"cinema": "Esplanade Cineplex Ngamwongwan-Khaerai",
-        "times": ["18:40"],
+        "times": ["18:40", "23:59"],
         "image": "https://ia.media-imdb.com/images/M/MV5BOGU2YTZmMjYtZDUwYi00NTc1LTlkMjAtM2ViZDkzOTlhNGNhXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg"
       },
       {
