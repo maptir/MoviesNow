@@ -68,13 +68,15 @@ class TheaterActivity : AppCompatActivity(), OnMapReadyCallback, TheaterView {
         loadingPanel.visibility = if (loadingPanel.visibility == View.VISIBLE) View.GONE else View.VISIBLE
     }
 
-    private fun getLocationFromAddress(strAddress: String): Address {
-        return Geocoder(this).getFromLocationName(strAddress, 5)[0]
+    private fun getLocationFromAddress(strAddress: String): LatLng {
+        val location = Geocoder(this).getFromLocationName(strAddress, 5)[0]
+        return LatLng(location.latitude, location.longitude)
     }
 
     private fun getCurrentLocation(): Location? {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
             return null
+        println("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
         val lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return lm.getLastKnownLocation(LocationManager.GPS_PROVIDER)
     }
@@ -82,7 +84,9 @@ class TheaterActivity : AppCompatActivity(), OnMapReadyCallback, TheaterView {
     private inner class FindClosestCinema : AsyncTask<ArrayList<Movie>, Unit, Movie?>() {
         override fun doInBackground(vararg params: ArrayList<Movie>): Movie? {
             var closest: Movie = params[0][0]
-            val currentLatLng = getCurrentLocation() ?: return null
+            println(params[0])
+            val curLoc = getCurrentLocation() ?: return closest
+            val currentLatLng = LatLng(curLoc.latitude, curLoc.longitude)
             for (movie in params[0]) {
                 if (movie.cinema != closest.cinema) {
                     val movieLatLng = getLocationFromAddress(movie.cinema)
@@ -91,6 +95,10 @@ class TheaterActivity : AppCompatActivity(), OnMapReadyCallback, TheaterView {
                     Location.distanceBetween(currentLatLng.latitude, movieLatLng.latitude, currentLatLng.longitude, movieLatLng.longitude, dNew)
                     val dOld = FloatArray(1)
                     Location.distanceBetween(currentLatLng.latitude, closestLatLng.latitude, currentLatLng.longitude, closestLatLng.longitude, dOld)
+                    println("+++++++++++++++++++++++++++++++++++++++++++++++++++")
+                    println(dNew[0])
+                    println(dOld[0])
+                    println("+++++++++++++++++++++++++++++++++++++++++++++++++++")
                     if (dNew[0] < dOld[0])
                         closest = movie
                 }
@@ -128,7 +136,7 @@ class TheaterActivity : AppCompatActivity(), OnMapReadyCallback, TheaterView {
             val closest = getLocationFromAddress(result.cinema)
             val cLatLng = LatLng(closest.latitude, closest.longitude)
             mMap.addMarker(MarkerOptions().position(cLatLng).title(result.cinema))
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cLatLng, 17f))
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cLatLng, 16f))
             toggleLoading()
         }
     }
