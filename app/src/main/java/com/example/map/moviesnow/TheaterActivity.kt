@@ -76,29 +76,28 @@ class TheaterActivity : AppCompatActivity(), OnMapReadyCallback, TheaterView {
     private fun getCurrentLocation(): Location? {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
             return null
-        println("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
         val lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        return lm.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+        val kuLocation = Location("KU")
+        val kuLatLng = getLocationFromAddress("Kasetsart University")
+        kuLocation.latitude = kuLatLng.latitude
+        kuLocation.longitude = kuLatLng.longitude
+        // Return KU location instead of your current location if GPS is can't find the location.
+        return lm.getLastKnownLocation(LocationManager.GPS_PROVIDER) ?: return kuLocation
     }
 
     private inner class FindClosestCinema : AsyncTask<ArrayList<Movie>, Unit, Movie?>() {
         override fun doInBackground(vararg params: ArrayList<Movie>): Movie? {
             var closest: Movie = params[0][0]
-            println(params[0])
-            val curLoc = getCurrentLocation() ?: return closest
+            val curLoc = getCurrentLocation()!!
             val currentLatLng = LatLng(curLoc.latitude, curLoc.longitude)
             for (movie in params[0]) {
                 if (movie.cinema != closest.cinema) {
                     val movieLatLng = getLocationFromAddress(movie.cinema)
                     val closestLatLng = getLocationFromAddress(closest.cinema)
                     val dNew = FloatArray(1)
-                    Location.distanceBetween(currentLatLng.latitude, movieLatLng.latitude, currentLatLng.longitude, movieLatLng.longitude, dNew)
+                    Location.distanceBetween(currentLatLng.latitude, currentLatLng.longitude, movieLatLng.latitude, movieLatLng.longitude, dNew)
                     val dOld = FloatArray(1)
-                    Location.distanceBetween(currentLatLng.latitude, closestLatLng.latitude, currentLatLng.longitude, closestLatLng.longitude, dOld)
-                    println("+++++++++++++++++++++++++++++++++++++++++++++++++++")
-                    println(dNew[0])
-                    println(dOld[0])
-                    println("+++++++++++++++++++++++++++++++++++++++++++++++++++")
+                    Location.distanceBetween(currentLatLng.latitude, currentLatLng.longitude, closestLatLng.latitude, closestLatLng.longitude, dOld)
                     if (dNew[0] < dOld[0])
                         closest = movie
                 }
